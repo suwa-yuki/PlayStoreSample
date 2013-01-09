@@ -2,6 +2,7 @@ package jp.classmethod.android.sample.playstore;
 
 import java.util.ArrayList;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,7 +18,15 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
     
     @Override
     public Fragment getItem(int position) {
-        return mList.get(position).fragment;
+        PageItem item = mList.get(position);
+        if (PageItem.RELATIVE == item.fragmentId) {
+            return new RecommendFragment();
+        }
+        GridViewFragment gridViewFragment = new GridViewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("list", item.appList);
+        gridViewFragment.setArguments(bundle);
+        return gridViewFragment;
     }
     
     @Override
