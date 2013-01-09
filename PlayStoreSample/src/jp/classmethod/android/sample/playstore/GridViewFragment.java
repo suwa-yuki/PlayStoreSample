@@ -10,27 +10,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+/**
+ * GridView ‚Ì Fragment.
+ */
 public class GridViewFragment extends Fragment {
-
-    private GridView mGridView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mGridView = new GridView(getActivity());
+        GridView gridView = new GridView(getActivity());
 
         Configuration config = getResources().getConfiguration();
         if (config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            mGridView.setNumColumns(3);
+            gridView.setNumColumns(3);
         } else {
-            mGridView.setNumColumns(2);
+            gridView.setNumColumns(2);
         }
 
         @SuppressWarnings("unchecked")
         ArrayList<App> list = (ArrayList<App>) getArguments().get("list");
-        mGridView.setAdapter(new AppListAdapter(getActivity(), R.layout.item_app, list));
+        gridView.setAdapter(new AppListAdapter(getActivity(), R.layout.item_app, list));
 
-        return mGridView;
+        return gridView;
     }
 
 }

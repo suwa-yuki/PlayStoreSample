@@ -19,7 +19,7 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         PageItem item = mList.get(position);
-        if (PageItem.RELATIVE == item.fragmentId) {
+        if (PageItem.RELATIVE == item.fragmentKind) {
             return new RecommendFragment();
         }
         GridViewFragment gridViewFragment = new GridViewFragment();

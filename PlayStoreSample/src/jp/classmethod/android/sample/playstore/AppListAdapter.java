@@ -12,8 +12,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+/**
+ * GridView の Adapter.
+ */
 public class AppListAdapter extends ArrayAdapter<App> {
     
+    /**
+     * コンストラクタ.
+     * @param context {@link Context}
+     * @param textViewResourceId リソースID
+     * @param objects リスト
+     */
     public AppListAdapter(Context context, int textViewResourceId, List<App> objects) {
         super(context, textViewResourceId, objects);
     }
@@ -46,12 +55,20 @@ public class AppListAdapter extends ArrayAdapter<App> {
         return convertView;
     }
     
+    /**
+     * ViewHolder.
+     */
     private class ViewHolder {
         
+        /** アプリアイコン. */
         public ImageView imageView;
+        /** アプリ名. */
         public TextView titleTextView;
+        /** 制作会社. */
         public TextView companyTextView;
+        /** 評価. */
         public RatingBar ratingBar;
+        /** 価格. */
         public TextView valueTextView;
         
     }

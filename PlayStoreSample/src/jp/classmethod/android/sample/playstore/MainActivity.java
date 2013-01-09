@@ -8,15 +8,18 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
+/**
+ * ViewPager を表示する Activity です.
+ */
 public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        
+
         // PagerTitleStrip のカスタマイズ
         PagerTabStrip strip = (PagerTabStrip) findViewById(R.id.strip);
         strip.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
@@ -25,9 +28,10 @@ public class MainActivity extends FragmentActivity {
         strip.setNonPrimaryAlpha(0.3f);
         strip.setDrawFullUnderline(true);
         strip.setTabIndicatorColor(0xff9acd32);
-        
+
         // ViewPager の Adapter
         GridViewPagerAdapter adapter = new GridViewPagerAdapter(getSupportFragmentManager());
+
         // GridView の Adapter
         ArrayList<App> appList = new ArrayList<App>();
         for (int i = 0; i < 30; i++) {
@@ -39,27 +43,27 @@ public class MainActivity extends FragmentActivity {
             item.value = (int) Math.floor((Math.random() * (500 - 80 + 1))) + 80;
             appList.add(item);
         }
-        
+
         // 各ページアイテム(おすすめアプリ)
         PageItem recommend = new PageItem();
         recommend.title = "Recommend App";
-        recommend.fragmentId = PageItem.RELATIVE;
+        recommend.fragmentKind = PageItem.RELATIVE;
         adapter.addItem(recommend);
-        
+
         // 各ページアイテム(人気アプリ)
         PageItem popular = new PageItem();
         popular.title = "Popular App";
-        popular.fragmentId = PageItem.GRID;
+        popular.fragmentKind = PageItem.GRID;
         popular.appList = appList;
         adapter.addItem(popular);
-        
+
         // 各ページアイテム(新着アプリ)
         PageItem newest = new PageItem();
         newest.title = "Newest App";
-        newest.fragmentId = PageItem.GRID;
+        newest.fragmentKind = PageItem.GRID;
         newest.appList = appList;
         adapter.addItem(newest);
-        
+
         pager.setAdapter(adapter);
     }
 }
