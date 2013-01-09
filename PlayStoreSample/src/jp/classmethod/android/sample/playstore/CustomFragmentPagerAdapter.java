@@ -7,11 +7,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class GridViewPagerAdapter extends FragmentPagerAdapter {
+/**
+ * FragmentPagerAdapter.
+ */
+public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
+    /** {@link PageItem} のリスト. */
     private ArrayList<PageItem> mList;
     
-    public GridViewPagerAdapter(FragmentManager fm) {
+    /**
+     * コンストラクタ.
+     * @param fm {@link FragmentManager}
+     */
+    public CustomFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
         mList = new ArrayList<PageItem>();
     }
@@ -20,9 +28,12 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         PageItem item = mList.get(position);
         if (PageItem.RELATIVE == item.fragmentKind) {
+            // RelativeLayout の Fragment
             return new RecommendFragment();
         }
+        // GridView の Fragment
         GridViewFragment gridViewFragment = new GridViewFragment();
+        // Bundle を作成
         Bundle bundle = new Bundle();
         bundle.putSerializable("list", item.appList);
         gridViewFragment.setArguments(bundle);
@@ -39,6 +50,10 @@ public class GridViewPagerAdapter extends FragmentPagerAdapter {
         return mList.size();
     }
     
+    /**
+     * アイテムを追加する.
+     * @param item {@link PageItem}
+     */
     public void addItem(PageItem item) {
         mList.add(item);
     }

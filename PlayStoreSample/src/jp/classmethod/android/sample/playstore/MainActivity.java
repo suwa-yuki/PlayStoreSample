@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 
 /**
- * ViewPager ‚ð•\Ž¦‚·‚é Activity ‚Å‚·.
+ * ViewPager ‚ð•\Ž¦‚·‚é Activity.
  */
 public class MainActivity extends FragmentActivity {
 
@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity {
         strip.setTabIndicatorColor(0xff9acd32);
 
         // ViewPager ‚Ì Adapter
-        GridViewPagerAdapter adapter = new GridViewPagerAdapter(getSupportFragmentManager());
+        CustomFragmentPagerAdapter adapter = new CustomFragmentPagerAdapter(getSupportFragmentManager());
 
         // GridView ‚Ì Adapter
         ArrayList<App> appList = new ArrayList<App>();
